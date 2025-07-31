@@ -42,7 +42,7 @@ param (
 )
 
 # DEBUG
-Clear-Host
+#Clear-Host
 
 #######################################################################################################################
 # Load Module
@@ -112,87 +112,45 @@ Write-Host '--------------------------------------------------------------------
 
 #>
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'stats' -ForegroundColor Cyan
+Write-Host 'stats | RAW' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'stats'
+#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'stats'
 #$ApiObject | ConvertTo-Json -Depth 100
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'stats | custom data | Nano 3S' -ForegroundColor Cyan
+Write-Host 'stats | CustomData' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 
-# Avalon Nano 3S
-$CustomDataRAW = $ApiObject.STATS | Where-Object { $NULL -ne $_.'MM ID0' } | Select-Object -ExpandProperty 'MM ID0'
+#$CustomData = Get-AvalonCustomData -ApiObject $ApiObject
+#$CustomData | Format-List *
 
-if ( $NULL -ne $CustomDataRAW ) {
-
-    Write-Host 'Avalon Nano 3S Pattern Found' -ForegroundColor Green
-
-} else {
-
-    $CustomDataRAW = $ApiObject.STATS.'MM ID0:Summary'
-    $CustomDataRAW = $CustomDataRAW -replace '(\w+):\[([^\]]+)\]', '$1[$2]'
-
-    if ( $NULL -ne $CustomDataRAW ) {
-
-        Write-Host 'Avalon Q Pattern Found' -ForegroundColor Green
-
-    } else {
-
-        Write-Host 'No custom data found.' -ForegroundColor Yellow
-    }
-}
-
-if ( $NULL -ne $CustomDataRAW ) {
-
-    $MatchList = [regex]::Matches($CustomDataRAW, '(\w+)\[([^\]]+)\]')
-
-    # Create a hashtable to store the key-value pairs
-    $CustomDataHashTable = [ordered] @{}
-
-    foreach ($match in $MatchList) {
-        $key = $match.Groups[1].Value
-        $value = $match.Groups[2].Value
-
-        # Handle special cases for values that might contain spaces
-        if ($value -match '^\d+$') {
-            $CustomDataHashTable[$key] = [int]$value
-        } elseif ($value -match '^\d+\.\d+$') {
-            $CustomDataHashTable[$key] = [double]$value
-        } else {
-            $CustomDataHashTable[$key] = $value
-        }
-    }
-
-    # Create a custom object from the hashtable
-    $CustomData = New-Object PSObject -Property $CustomDataHashTable
-
-    # Sort the properties of the custom object
-    $CustomData = $CustomData | Select-Object -Property ( $CustomDataHashTable.Keys | Sort-Object )
-
-    # Output the custom object
-    $CustomData
-
-} else {
-
-    Write-Host 'No custom data found.' -ForegroundColor Yellow
-}
-
-<#
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'estats' -ForegroundColor Cyan
+Write-Host 'estats | RAW' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'estats'
+$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'estats'
 #$ApiObject | ConvertTo-Json -Depth 100
 
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+Write-Host 'estats | CustomData' -ForegroundColor Cyan
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+
+$CustomData = Get-AvalonCustomData -ApiObject $ApiObject
+$CustomData | Format-List *
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'litestats' -ForegroundColor Cyan
+Write-Host 'litestats | RAW' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 #$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'litestats'
 #$ApiObject | ConvertTo-Json -Depth 100
 
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+Write-Host 'litestats | CustomData' -ForegroundColor Cyan
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 
+#$CustomData = Get-AvalonCustomData -ApiObject $ApiObject
+#$CustomData | Format-List *
+
+<#
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 Write-Host 'check' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
