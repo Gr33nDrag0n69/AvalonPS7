@@ -6,7 +6,7 @@
 
 .EXAMPLE
 
-    PS> .\Test-AvalonAPI.ps1 -IP 192.168.0.236 -Port 4028 -Command 'stats'
+    PS> .\Test-AvalonAPI.ps1 -IP 192.168.0.236
 
 .NOTES
 
