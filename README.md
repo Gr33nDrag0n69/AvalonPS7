@@ -5,24 +5,32 @@
 
 Canaan Avalon home miners are built to be managed by android using Avalon Family App.
 
-To manage miners from a PC, I found the following methods:
+From a computer, I found the following methods:
 
-* Web Interface: Require a QR code to be scan with the `Avalon Family App` each time.
-* FMS Software: Never detected miners... Need more testing.
+* Web Interface: Require a QR code to be scan with the `Avalon Family App` each time. Not much more info available.
+* FMS Software: Only valid solution, it's old/ugly and shaky. Bare minimum from Avalon for multi miners management.
 * AvalonMinerViewer: A shady russian software. It is infected with a virus.
 
-The goal of this project is to communicate directly with the miners from PowerShell 7.
+The goal of this project is to communicate directly with the Nano 3S & Q miners from PowerShell 7 using open source code.
 
-## Download
+Allowing a nicer and more complete tool to show current miner info and opening more advanced management and monitoring of the Avalon miners.
+
+## Scripts
+
+All the free tools are written using PowerShell 7.
+
+PowerShell 7 is free and can be installed on Windows, Linux, macOS & more.
+
+[Install PS7](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
+
+### Show-AvalonMinerInfo
+
+```powershell
+PS C:\GIT\AvalonPS7> .\Show-AvalonMinerInfo.ps1 -IP 192.168.1.236
+
+```
+
+## Avalon Download
 
 [FMS Repository](https://download.canaan-creative.com/fms/)
 
-## Documentation
-
-[Nano 3S API source code](https://github.com/Canaan-Creative/Avalon_Nano3s/blob/master/cg_miner/api/api.c)
-
-[Canaan Github](https://github.com/orgs/Canaan-Creative/repositories?type=all)
-
-[Official cgminer API documentation](https://github.com/ckolivas/cgminer/blob/master/API-README)
-
-[HowTo Jailbreak Nano 3S (Untested)](https://orca.pet/nanojb/)
