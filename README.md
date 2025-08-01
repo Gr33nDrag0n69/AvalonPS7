@@ -1,19 +1,35 @@
 # AvalonPS7
 
+PowerShell 7 Tools for Canaan Avalon BTC Miners
 
 ## Why this project
 
-Canaan Avalon home miners are built to be managed by android using Avalon Family App.
+I love Canaan hardware but like someone said `the software has a distinctly hacked together feel`.
+
+Canaan Avalon home miners like the Nano 3S & the Q are built to be managed by a phone using Avalon Family App.
 
 From a computer, I found the following methods:
 
-* Web Interface: Require a QR code to be scan with the `Avalon Family App` each time. Not much more info available.
-* FMS Software: Only valid solution, it's old/ugly and shaky. Bare minimum from Avalon for multi miners management.
+* Web Interface: Require a QR code to be scan with the phone `Avalon Family App` each time. Basic Info Only.
+* FMS Software: Only valid solution, it's old, ugly and shaky at best.
 * AvalonMinerViewer: A shady russian software. It is infected with a virus.
 
-The goal of this project is to communicate directly with the Nano 3S & Q miners from PowerShell 7 using open source code.
 
-Allowing a nicer and more complete tool to show current miner info and opening more advanced management and monitoring of the Avalon miners.
+The goal of this project is to communicate directly with the miners, skipping Canaan softwares.
+
+* Better MinerInfo
+* Multi-Miner Dashboard
+* Monitoring (Status, Fans, Temp, Pool, etc.)
+* Report JSON, CSV, XSLX
+* Discord Bot Alerting
+* Remote Control !? I.e. change WorkMode
+
+While staying open source
+
+### Tested/Supported Models:
+
+* Nano 3S
+* Q
 
 ## Scripts
 
