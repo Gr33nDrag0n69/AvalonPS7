@@ -53,30 +53,9 @@ Import-Module "$PSScriptRoot\Modules\Avalon\Avalon.psm1"
 # Script Configuration
 
 
+
 #######################################################################################################################
 # MAIN
-
-<#
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'version' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'version'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'config' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'config'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'devs' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'devs'
-#$ApiObject | ConvertTo-Json -Depth 100
-
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 Write-Host 'edevs' -ForegroundColor Cyan
@@ -91,6 +70,12 @@ Write-Host '--------------------------------------------------------------------
 #$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'pools'
 #$ApiObject | ConvertTo-Json -Depth 100
 
+#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "switchpool"
+#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "poolpriority"
+#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "enablepool"
+#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "disablepool"
+#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "setpool"
+
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 Write-Host 'summary' -ForegroundColor Cyan
@@ -98,71 +83,18 @@ Write-Host '--------------------------------------------------------------------
 #$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'summary'
 #$ApiObject | ConvertTo-Json -Depth 100
 
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "switchpool"
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "poolpriority"
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "enablepool"
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "disablepool"
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "setpool"
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'devdetails' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'devdetails'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-#>
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'stats | RAW' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'stats'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'stats | CustomData' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-
-#$CustomData = Get-AvalonCustomData -ApiObject $ApiObject
-#$CustomData | Format-List *
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 Write-Host 'estats | RAW' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'estats'
+#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'estats'
 #$ApiObject | ConvertTo-Json -Depth 100
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 Write-Host 'estats | CustomData' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-
-$CustomData = Get-AvalonCustomData -ApiObject $ApiObject
-$CustomData | Format-List *
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'litestats | RAW' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'litestats'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'litestats | CustomData' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-
 #$CustomData = Get-AvalonCustomData -ApiObject $ApiObject
 #$CustomData | Format-List *
-
-<#
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'check' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'check'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'coin' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'coin'
-#$ApiObject | ConvertTo-Json -Depth 100
 
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
@@ -180,24 +112,6 @@ Write-Host '--------------------------------------------------------------------
 #$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'lcd'
 #$ApiObject | ConvertTo-Json -Depth 100
 
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'lockstats' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'lockstats'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'time' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'time'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-
-#>
 
 #######################################################################################################################
 
