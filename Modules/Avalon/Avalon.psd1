@@ -12,7 +12,9 @@
     # For best performance, do not use wildcards and do not delete the entry, use an empty array if there are nothing to export.
 
     FunctionsToExport = @(
-        'Invoke-AvalonAPI'
+        'Invoke-AvalonAPI',
+        'Get-AvalonCustomData',
+        'Get-AvalonMinerInfo'
     )
     CmdletsToExport   = @()
     VariablesToExport = ''
