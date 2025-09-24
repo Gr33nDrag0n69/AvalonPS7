@@ -47,7 +47,3 @@ PS C:\GIT\AvalonPS7> .\Show-AvalonMinerInfo.ps1 -IP 192.168.1.236
 
 ```
 
-## Avalon Download
-
-[FMS Repository](https://download.canaan-creative.com/fms/)
-
