@@ -28,6 +28,7 @@ While staying open source
 
 ### Tested/Supported Models:
 
+* Nano 3
 * Nano 3S
 * Q
 

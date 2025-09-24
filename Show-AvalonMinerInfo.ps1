@@ -87,7 +87,7 @@ if ( $NULL -ne $MinerInfo ) {
     Write-Host ''
     Write-Host "    Fan PCT         : $($MinerInfo.FanSpeed_PCT) %" -ForegroundColor White
     Write-Host "    Fan 1           : $($MinerInfo.Fan1Speed_RPM) RPM" -ForegroundColor White
-    if ( $MinerInfo.Model -ne 'Nano3s' ) {
+    if ( $MinerInfo.Model -ne 'nano3' -and $MinerInfo.Model -ne 'Nano3s' ) {
         Write-Host "    Fan 2           : $($MinerInfo.Fan2Speed_RPM) RPM" -ForegroundColor White
         Write-Host "    Fan 3           : $($MinerInfo.Fan3Speed_RPM) RPM" -ForegroundColor White
         Write-Host "    Fan 4           : $($MinerInfo.Fan4Speed_RPM) RPM" -ForegroundColor White
@@ -96,7 +96,7 @@ if ( $NULL -ne $MinerInfo ) {
 
     Write-Host '# Temperature' -ForegroundColor DarkCyan
     Write-Host ''
-    if ( $MinerInfo.Model -ne 'Nano3s' ) {
+    if ( $MinerInfo.Model -ne 'nano3' -and $MinerInfo.Model -ne 'Nano3s' ) {
         Write-Host "    Case Inlet      : $($MinerInfo.Temp_CaseInlet) °C" -ForegroundColor White
         Write-Host "    Hashboard In    : $($MinerInfo.Temp_HashboardIn) °C" -ForegroundColor White
         Write-Host "    Hashboard Out   : $($MinerInfo.Temp_HashboardOut) °C" -ForegroundColor White
