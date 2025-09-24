@@ -38,7 +38,9 @@ param (
 
     [Parameter(Mandatory = $false)]
     [ValidateRange(1, 65535)]
-    [int] $Port = 4028
+    [int] $Port = 4028,
+
+    [switch] $HideSensitiveInfo = $False
 )
 
 #######################################################################################################################
@@ -53,9 +55,14 @@ $MinerInfo = Get-AvalonMinerInfo -IP $IP -Port $Port
 
 if ( $NULL -ne $MinerInfo ) {
 
+    if ( $HideSensitiveInfo ) {
 
-    # ScreenShot ONLY
-    $MinerInfo.IP = 'xxx.xxx.xxx.xxx'
+        $MinerInfo.IP = 'xxx.xxx.xxx.xxx'
+
+    } else {
+
+        $MinerInfo.IP = $IP
+    }
 
     Write-Host ''
     Write-Host "IP                  : $($MinerInfo.IP)" -ForegroundColor White
@@ -66,6 +73,7 @@ if ( $NULL -ne $MinerInfo ) {
     Write-Host "Max Power Output    : $($MinerInfo.MaxPowerOutput) W" -ForegroundColor White
     Write-Host ''
 
+    <#
     Write-Host '# Hash Rate | Avalon CustomData' -ForegroundColor DarkCyan
     Write-Host ''
     Write-Host "    Average         : $($MinerInfo.HashRate_Average_THS) TH/s" -ForegroundColor White
@@ -82,12 +90,19 @@ if ( $NULL -ne $MinerInfo ) {
     Write-Host "    5m              : $($MinerInfo.HashRate_CGM_5m_THS) TH/s" -ForegroundColor White
     Write-Host "    15m             : $($MinerInfo.HashRate_CGM_15m_THS) TH/s" -ForegroundColor White
     Write-Host ''
+    #>
+
+    Write-Host '# Hash Rate' -ForegroundColor DarkCyan
+    Write-Host ''
+    Write-Host "    Current         : $($MinerInfo.HashRate_Current_THS) TH/s" -ForegroundColor White
+    Write-Host "    Average         : $($MinerInfo.HashRate_Average_THS) TH/s" -ForegroundColor White
+    Write-Host ''
 
     Write-Host '# Fan(s)' -ForegroundColor DarkCyan
     Write-Host ''
     Write-Host "    Fan PCT         : $($MinerInfo.FanSpeed_PCT) %" -ForegroundColor White
     Write-Host "    Fan 1           : $($MinerInfo.Fan1Speed_RPM) RPM" -ForegroundColor White
-    if ( $MinerInfo.Model -ne 'nano3' -and $MinerInfo.Model -ne 'Nano3s' ) {
+    if ( $MinerInfo.Model -eq 'Q' ) {
         Write-Host "    Fan 2           : $($MinerInfo.Fan2Speed_RPM) RPM" -ForegroundColor White
         Write-Host "    Fan 3           : $($MinerInfo.Fan3Speed_RPM) RPM" -ForegroundColor White
         Write-Host "    Fan 4           : $($MinerInfo.Fan4Speed_RPM) RPM" -ForegroundColor White
@@ -96,7 +111,7 @@ if ( $NULL -ne $MinerInfo ) {
 
     Write-Host '# Temperature' -ForegroundColor DarkCyan
     Write-Host ''
-    if ( $MinerInfo.Model -ne 'nano3' -and $MinerInfo.Model -ne 'Nano3s' ) {
+    if ( $MinerInfo.Model -eq 'Q' ) {
         Write-Host "    Case Inlet      : $($MinerInfo.Temp_CaseInlet) °C" -ForegroundColor White
         Write-Host "    Hashboard In    : $($MinerInfo.Temp_HashboardIn) °C" -ForegroundColor White
         Write-Host "    Hashboard Out   : $($MinerInfo.Temp_HashboardOut) °C" -ForegroundColor White
