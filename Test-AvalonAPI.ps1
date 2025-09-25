@@ -6,7 +6,7 @@
 
 .EXAMPLE
 
-    PS> .\Test-AvalonAPI.ps1 -IP 192.168.0.236
+    PS> .\Test-AvalonAPI.ps1 -MinerIP 192.168.0.236
 
 .NOTES
 
@@ -34,11 +34,7 @@ param (
                 ($bytes[0] -eq 172 -and $bytes[1] -ge 16 -and $bytes[1] -le 31)
             )
         })]
-    [string] $IP,
-
-    [Parameter(Mandatory = $false)]
-    [ValidateRange(1, 65535)]
-    [int] $Port = 4028
+    [string] $MinerIP
 )
 
 # DEBUG
@@ -57,42 +53,28 @@ Import-Module "$PSScriptRoot\Modules\Avalon\Avalon.psm1"
 #######################################################################################################################
 # MAIN
 
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'edevs' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'edevs'
+#Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#Write-Host 'edevs' -ForegroundColor Cyan
+#Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'edevs'
+#$ApiObject | ConvertTo-Json -Depth 100
+
+#Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#Write-Host 'summary' -ForegroundColor Cyan
+#Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'summary'
 #$ApiObject | ConvertTo-Json -Depth 100
 
 
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'pools' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'pools'
+#Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#Write-Host 'estats | RAW' -ForegroundColor Cyan
+#Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'estats'
 #$ApiObject | ConvertTo-Json -Depth 100
 
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "switchpool"
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "poolpriority"
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "enablepool"
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "disablepool"
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command "setpool"
-
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'summary' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'summary'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'estats | RAW' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'estats'
-#$ApiObject | ConvertTo-Json -Depth 100
-
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'estats | CustomData' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#Write-Host 'estats | CustomData' -ForegroundColor Cyan
+#Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 #$CustomData = Get-AvalonCustomData -ApiObject $ApiObject
 #$CustomData | Format-List *
 
@@ -102,16 +84,35 @@ Write-Host 'ascset' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 
 # Test with parameters TODO
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'ascset'
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset'
 #$ApiObject | ConvertTo-Json -Depth 100
 
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 Write-Host 'lcd' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'lcd'
-#$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'lcd'
 
+$ApiObject | ConvertTo-Json -Depth 100
+
+<#
+$LcdData = [PSCustomObject] @{
+
+    CurrentPool         = $ApiObject.LCD.'Current Pool'
+    User                = $ApiObject.LCD.'User'
+
+    LastValidWork       = Get-Date -Date ([DateTimeOffset]::FromUnixTimeSeconds($ApiObject.LCD.'Last Valid Work')).DateTime.ToLocalTime() -Format 'yyyy-MM-dd HH:mm:ss'
+    LastShareDifficulty = Convert-AvalonDifficulty -Difficulty $ApiObject.LCD.'Last Share Difficulty'
+
+    # Only work on Q model
+    #LastShareTime       = New-TimeSpan -Seconds ($ApiObject.LCD.'Last Share Time' - $ApiObject.LCD.Elapsed)
+
+    BestShare           = Convert-AvalonDifficulty -Difficulty $ApiObject.LCD.'Best Share'
+    FoundBlocks         = $ApiObject.LCD.'Found Blocks'
+}
+
+$LcdData | Format-List *
+#>
 
 #######################################################################################################################
 
