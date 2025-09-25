@@ -87,6 +87,33 @@ Write-Host '--------------------------------------------------------------------
 #$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset'
 #$ApiObject | ConvertTo-Json -Depth 100
 
+<#
+Notes from r3mko on discord
+
+{ "command": "ascset", "parameter": "0,fan-spd,90" }
+Also for later reference, the fan-spd also takes a range: 10-100
+
+help output:
+
+Subcommands list:
+
+loop
+pdelay
+frequency
+led
+hashpower
+fan-spd
+factory
+reboot
+softoff
+softon
+upgrade
+worklevel
+password
+help
+
+#>
+
 
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 Write-Host 'lcd' -ForegroundColor Cyan
