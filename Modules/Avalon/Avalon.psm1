@@ -372,9 +372,21 @@ function Get-AvalonMinerInfo {
     #######################################################
     # Fetch lcd data
 
-    #######################################################
-    # Fetch pool data
+    <#
+    $ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'lcd'
+    $LcdData = [PSCustomObject] @{
 
+        CurrentPool         = $ApiObject.LCD.'Current Pool'
+        User                = $ApiObject.LCD.'User'
+        LastValidWork       = Get-Date -Date ([DateTimeOffset]::FromUnixTimeSeconds($ApiObject.LCD.'Last Valid Work')).DateTime.ToLocalTime() -Format 'yyyy-MM-dd HH:mm:ss'
+        LastShareDifficulty = Convert-AvalonDifficulty -Difficulty $ApiObject.LCD.'Last Share Difficulty'
+        BestShare           = Convert-AvalonDifficulty -Difficulty $ApiObject.LCD.'Best Share'
+        FoundBlocks         = $ApiObject.LCD.'Found Blocks'
+    }
+    $LcdData | Format-List *
+    #>
+
+    
     #######################################################
 
     $MinerInfo
