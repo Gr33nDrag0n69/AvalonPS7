@@ -28,7 +28,10 @@ function Invoke-AvalonAPI {
         [int] $Port = 4028,
 
         [Parameter(Mandatory = $true)]
-        [string] $Command = ''
+        [string] $Command = '',
+
+        [Parameter(Mandatory = $False)]
+        [string] $Params = ''
     )
 
     $client = New-Object System.Net.Sockets.TcpClient
@@ -45,11 +48,32 @@ function Invoke-AvalonAPI {
         return
     }
 
+    if ( $Params -ne '' ) {
+
+        $JsonCommand = @{
+            command   = "$Command"
+            parameter = "$Params"
+        } | ConvertTo-Json -Compress
+
+    } else {
+
+        $JsonCommand = @{
+            command = "$Command"
+        } | ConvertTo-Json -Compress
+    }
+
+    #Write-Host "DEBUG | Invoke-AvalonAPI | $($IP):$($Port) | Command: $Command | Params: $Params" -ForegroundColor Gray
+    #Write-Host "$JsonCommand" -ForegroundColor Magenta
+
     $stream = $client.GetStream()
+
     $writer = New-Object System.IO.StreamWriter($stream)
     $reader = New-Object System.IO.StreamReader($stream)
+    #$writer = New-Object System.IO.StreamWriter($stream, [System.Text.Encoding]::ASCII, 1024, $false)
+    #$reader = New-Object System.IO.StreamReader($stream, [System.Text.Encoding]::ASCII, $false, 1024, $false)
+
     $writer.AutoFlush = $true
-    $writer.Write("{`"command`":`"$Command`"}")
+    $writer.Write($JsonCommand)
     $writer.Flush()
     Start-Sleep -Milliseconds 100
     $response = $reader.ReadToEnd()
@@ -196,7 +220,8 @@ function Get-AvalonMinerInfo {
         Temp_AsicMaximum         = $NULL
     }
 
-    #--
+    #######################################################
+    # Fetch estats data
 
     $ESTATS_ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'estats'
 
@@ -204,9 +229,10 @@ function Get-AvalonMinerInfo {
         return
     }
 
-    $CustomData = Get-AvalonCustomData -ApiObject $ESTATS_ApiObject
+    #######################################################
+    # Extract Avalon Custom Data from estats
 
-    #--
+    $CustomData = Get-AvalonCustomData -ApiObject $ESTATS_ApiObject
 
     # Model
 
@@ -318,7 +344,8 @@ function Get-AvalonMinerInfo {
         $MinerInfo.Temp_AsicMaximum = $CustomData.TMax
     }
 
-    #--
+    #######################################################
+    # Fetch summary data
 
     $SUMMARY_ApiObject = Invoke-AvalonAPI -IP $IP -Port $Port -Command 'summary'
 
@@ -342,9 +369,40 @@ function Get-AvalonMinerInfo {
         $MinerInfo.HashRate_CGM_15m_THS = '{0:N2}' -f $($SUMMARY_ApiObject.SUMMARY.'MHS 15m' / 1000000)
     }
 
-    #--
+    #######################################################
+    # Fetch lcd data
+
+    #######################################################
+    # Fetch pool data
+
+    #######################################################
 
     $MinerInfo
+}
+
+#######################################################################################################################
+
+function Convert-AvalonDifficulty {
+
+    param (
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [double] $Difficulty
+    )
+
+    if ( $Difficulty -ge 1e15 ) {
+        return '{0:N2} P' -f ($Difficulty / 1e15)
+    } elseif ( $Difficulty -ge 1e12 ) {
+        return '{0:N2} T' -f ($Difficulty / 1e12)
+    } elseif ( $Difficulty -ge 1e9 ) {
+        return '{0:N2} G' -f ($Difficulty / 1e9)
+    } elseif ( $Difficulty -ge 1e6 ) {
+        return '{0:N2} M' -f ($Difficulty / 1e6)
+    } elseif ( $Difficulty -ge 1e3 ) {
+        return '{0:N2} K' -f ($Difficulty / 1e3)
+    } else {
+        return '{0:N2}' -f $Difficulty
+    }
 }
 
 #######################################################################################################################
