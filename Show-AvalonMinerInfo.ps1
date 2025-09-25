@@ -6,7 +6,7 @@
 
 .EXAMPLE
 
-    PS> .\Show-AvalonMinerInfo.ps1 -IP 192.168.0.236
+    PS> .\Show-AvalonMinerInfo.ps1 -MinerIP 192.168.0.236
 
 .NOTES
 
@@ -34,11 +34,7 @@ param (
                 ($bytes[0] -eq 172 -and $bytes[1] -ge 16 -and $bytes[1] -le 31)
             )
         })]
-    [string] $IP,
-
-    [Parameter(Mandatory = $false)]
-    [ValidateRange(1, 65535)]
-    [int] $Port = 4028,
+    [string] $MinerIP,
 
     [switch] $HideSensitiveInfo = $False
 )
@@ -51,7 +47,7 @@ Import-Module "$PSScriptRoot\Modules\Avalon\Avalon.psm1"
 #######################################################################################################################
 # MAIN
 
-$MinerInfo = Get-AvalonMinerInfo -IP $IP -Port $Port
+$MinerInfo = Get-AvalonMinerInfo -IP $MinerIP
 
 if ( $NULL -ne $MinerInfo ) {
 
@@ -61,7 +57,7 @@ if ( $NULL -ne $MinerInfo ) {
 
     } else {
 
-        $MinerInfo.IP = $IP
+        $MinerInfo.IP = $MinerIP
     }
 
     Write-Host ''
