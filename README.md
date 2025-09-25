@@ -6,7 +6,7 @@ PowerShell 7 Tools for Canaan Avalon BTC Miners
 
 I love Canaan hardware but like someone said `the software has a distinctly hacked together feel`.
 
-Canaan Avalon home miners like the Nano 3S & the Q are built to be managed by a phone using Avalon Family App.
+Canaan Avalon home miners like the Nano 3/3S & the Q are built to be managed by a phone using Avalon Family App.
 
 From a computer, I found the following methods:
 
@@ -43,7 +43,52 @@ PowerShell 7 is free and can be installed on Windows, Linux, macOS & more.
 ### Show-AvalonMinerInfo
 
 ```powershell
-PS C:\GIT\AvalonPS7> .\Show-AvalonMinerInfo.ps1 -IP 192.168.1.236
+PS C:\GIT\AvalonPS7> .\Show-AvalonMinerInfo.ps1 -MinerIP 192.168.1.236
+
+```
+
+### Set-AvalonMinerPoolConfiguration
+
+```powershell
+PS C:\GIT\AvalonPS7> .\Set-AvalonMinerPoolConfig.ps1 -MinerIP 192.168.0.236 -MinerPassword 'device admin password' -PoolID 2 -PoolURL 'stratum+tcp://example.com:333' -PoolUsername 'myworker' -PoolPassword '***'
+
+```
+
+### Set-AvalonMinerActivePool
+
+```powershell
+PS C:\GIT\AvalonPS7> .\Set-AvalonMinerActivePool.ps1 -MinerIP 192.168.0.236 -PoolID 1
+
+```
+
+### Enable-AvalonMinerPool
+
+```powershell
+PS C:\GIT\AvalonPS7> .\Enable-AvalonMinerPool.ps1 -MinerIP 192.168.0.236 -PoolID 0
+
+```
+
+### Disable-AvalonMinerPool
+
+```powershell
+PS C:\GIT\AvalonPS7> .\Disable-AvalonMinerPool.ps1 -MinerIP 192.168.0.236 -PoolID 1
+
+```
+
+
+### Set-AvalonMinerPoolPriority
+
+Set Default Pool to 1, Backup Pool to 0, Disable Pool 2
+
+```powershell
+PS C:\GIT\AvalonPS7> .\Set-AvalonMinerPoolPriority.ps1 -MinerIP 192.168.0.236 -PoolPriority '1,0'
+
+```
+
+Set Default Pool to 0, Backup Pool to 1 and 2
+
+```powershell
+PS C:\GIT\AvalonPS7> .\Set-AvalonMinerPoolPriority.ps1 -MinerIP 192.168.0.236 -PoolPriority '0,1,2'
 
 ```
 
