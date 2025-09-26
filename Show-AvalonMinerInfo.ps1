@@ -54,6 +54,8 @@ if ( $NULL -ne $MinerInfo ) {
     if ( $HideSensitiveInfo ) {
 
         $MinerInfo.IP = 'xxx.xxx.xxx.xxx'
+        $MinerInfo.ActivePool_Address = 'stratum+tcp://btc.example.com:3333'
+        $MinerInfo.ActivePool_Username = 'xxx'
 
     } else {
 
@@ -61,12 +63,14 @@ if ( $NULL -ne $MinerInfo ) {
     }
 
     Write-Host ''
-    Write-Host "IP                  : $($MinerInfo.IP)" -ForegroundColor White
-    Write-Host "Model               : $($MinerInfo.Model)" -ForegroundColor White
+    Write-Host "IP                   : $($MinerInfo.IP)" -ForegroundColor White
+    Write-Host "Model                : $($MinerInfo.Model)" -ForegroundColor White
+    Write-Host "Core                 : $($MinerInfo.Core)" -ForegroundColor White
+    Write-Host "Firmware             : $($MinerInfo.Firmware)" -ForegroundColor White
     Write-Host ''
-    Write-Host "Status              : $($MinerInfo.Status)" -ForegroundColor White
-    Write-Host "Work Mode           : $($MinerInfo.WorkMode)" -ForegroundColor White
-    Write-Host "Max Power Output    : $($MinerInfo.MaxPowerOutput) W" -ForegroundColor White
+    Write-Host "Status               : $($MinerInfo.Status)" -ForegroundColor White
+    Write-Host "Work Mode            : $($MinerInfo.WorkMode)" -ForegroundColor White
+    Write-Host "Max Power Output     : $($MinerInfo.MaxPowerOutput) W" -ForegroundColor White
     Write-Host ''
 
     <#
@@ -90,45 +94,49 @@ if ( $NULL -ne $MinerInfo ) {
 
     Write-Host '# Hash Rate' -ForegroundColor DarkCyan
     Write-Host ''
-    Write-Host "    Current         : $($MinerInfo.HashRate_Current_THS) TH/s" -ForegroundColor White
-    Write-Host "    Average         : $($MinerInfo.HashRate_Average_THS) TH/s" -ForegroundColor White
+    Write-Host "    Current          : $($MinerInfo.HashRate_Current_THS) TH/s" -ForegroundColor White
+    Write-Host "    Average          : $($MinerInfo.HashRate_Average_THS) TH/s" -ForegroundColor White
     Write-Host ''
 
     Write-Host '# Fan(s)' -ForegroundColor DarkCyan
     Write-Host ''
-    Write-Host "    Fan PCT         : $($MinerInfo.FanSpeed_PCT) %" -ForegroundColor White
-    Write-Host "    Fan 1           : $($MinerInfo.Fan1Speed_RPM) RPM" -ForegroundColor White
+    Write-Host "    Fan PCT          : $($MinerInfo.FanSpeed_PCT) %" -ForegroundColor White
+    Write-Host "    Fan 1            : $($MinerInfo.Fan1Speed_RPM) RPM" -ForegroundColor White
     if ( $MinerInfo.Model -eq 'Q' ) {
-        Write-Host "    Fan 2           : $($MinerInfo.Fan2Speed_RPM) RPM" -ForegroundColor White
-        Write-Host "    Fan 3           : $($MinerInfo.Fan3Speed_RPM) RPM" -ForegroundColor White
-        Write-Host "    Fan 4           : $($MinerInfo.Fan4Speed_RPM) RPM" -ForegroundColor White
+        Write-Host "    Fan 2            : $($MinerInfo.Fan2Speed_RPM) RPM" -ForegroundColor White
+        Write-Host "    Fan 3            : $($MinerInfo.Fan3Speed_RPM) RPM" -ForegroundColor White
+        Write-Host "    Fan 4            : $($MinerInfo.Fan4Speed_RPM) RPM" -ForegroundColor White
     }
     Write-Host ''
 
     Write-Host '# Temperature' -ForegroundColor DarkCyan
     Write-Host ''
     if ( $MinerInfo.Model -eq 'Q' ) {
-        Write-Host "    Case Inlet      : $($MinerInfo.Temp_CaseInlet) °C" -ForegroundColor White
-        Write-Host "    Hashboard In    : $($MinerInfo.Temp_HashboardIn) °C" -ForegroundColor White
-        Write-Host "    Hashboard Out   : $($MinerInfo.Temp_HashboardOut) °C" -ForegroundColor White
+        Write-Host "    Case Inlet       : $($MinerInfo.Temp_CaseInlet) °C" -ForegroundColor White
+        Write-Host "    Hashboard In     : $($MinerInfo.Temp_HashboardIn) °C" -ForegroundColor White
+        Write-Host "    Hashboard Out    : $($MinerInfo.Temp_HashboardOut) °C" -ForegroundColor White
     }
-    Write-Host "    ASIC Target     : $($MinerInfo.Temp_AsicTarget) °C" -ForegroundColor White
-    Write-Host "    ASIC Average    : $($MinerInfo.Temp_AsicAverage) °C" -ForegroundColor White
-    Write-Host "    ASIC Maximum    : $($MinerInfo.Temp_AsicMaximum) °C" -ForegroundColor White
+    Write-Host "    ASIC Target      : $($MinerInfo.Temp_AsicTarget) °C" -ForegroundColor White
+    Write-Host "    ASIC Average     : $($MinerInfo.Temp_AsicAverage) °C" -ForegroundColor White
+    Write-Host "    ASIC Maximum     : $($MinerInfo.Temp_AsicMaximum) °C" -ForegroundColor White
     Write-Host ''
 
-    Write-Host '# Pool' -ForegroundColor DarkCyan
+    Write-Host '# Active Pool' -ForegroundColor DarkCyan
     Write-Host ''
-    Write-Host '    Address         : TODO' -ForegroundColor White
-    Write-Host '    Username        : TODO' -ForegroundColor White
-    Write-Host '    Best Share      : TODO' -ForegroundColor White
-    Write-Host '    Pool Rejected % : TODO' -ForegroundColor White
-    Write-Host '    Pool Stale %    : TODO' -ForegroundColor White
+    Write-Host "    Address          : $($MinerInfo.ActivePool_Address)" -ForegroundColor White
+    Write-Host "    Username         : $($MinerInfo.ActivePool_Username)" -ForegroundColor White
+    Write-Host "    Ping Time        : $($MinerInfo.ActivePool_PingTime) ms" -ForegroundColor White
+    Write-Host "    Last Valid Work  : $($MinerInfo.ActivePool_LastValidWork)" -ForegroundColor White
+    Write-Host "    Best Share       : $($MinerInfo.ActivePool_BestShare)" -ForegroundColor White
+    Write-Host "    Last Share Diff. : $($MinerInfo.ActivePool_LastShareDifficulty)" -ForegroundColor White
+    Write-Host "    Found Block(s)   : $($MinerInfo.ActivePool_FoundBlocks)" -ForegroundColor White
+    Write-Host "    Rejected %       : $($MinerInfo.ActivePool_Rejected_PCT) %" -ForegroundColor White
+    Write-Host "    Stale %          : $($MinerInfo.ActivePool_Stale_PCT) %" -ForegroundColor White
     Write-Host ''
 
     Write-Host '# Misc.' -ForegroundColor DarkCyan
     Write-Host ''
-    Write-Host "    Uptime          : $($MinerInfo.Uptime)" -ForegroundColor White
+    Write-Host "    Uptime           : $($MinerInfo.Uptime)" -ForegroundColor White
     Write-Host ''
 
 
