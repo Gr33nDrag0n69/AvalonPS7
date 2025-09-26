@@ -188,36 +188,49 @@ function Get-AvalonMinerInfo {
     )
 
     $MinerInfo = [PSCustomObject] @{
-        IP                       = $IP
-        Model                    = $NULL
-        Status                   = $NULL
-        WorkMode                 = $NULL
-        MaxPowerOutput           = $NULL
-        Uptime                   = $NULL
+        IP                             = $IP
+        Model                          = $NULL
+        Core                           = $NULL
+        Firmware                       = $NULL
+        Status                         = $NULL
+        WorkMode                       = $NULL
+        MaxPowerOutput                 = $NULL
+        Uptime                         = $NULL
 
-        FanSpeed_PCT             = $NULL
-        Fan1Speed_RPM            = $NULL
-        Fan2Speed_RPM            = $NULL
-        Fan3Speed_RPM            = $NULL
-        Fan4Speed_RPM            = $NULL
+        FanSpeed_PCT                   = $NULL
+        Fan1Speed_RPM                  = $NULL
+        Fan2Speed_RPM                  = $NULL
+        Fan3Speed_RPM                  = $NULL
+        Fan4Speed_RPM                  = $NULL
 
-        HashRate_Average_THS     = $NULL
-        HashRate_Momentary_THS   = $NULL
-        HashRate_Current_THS     = $NULL
-        HashRate_Measured_THS    = $NULL
+        HashRate_Average_THS           = $NULL
+        HashRate_Momentary_THS         = $NULL
+        HashRate_Current_THS           = $NULL
+        HashRate_Measured_THS          = $NULL
 
-        HashRate_CGM_Average_THS = $NULL
-        HashRate_CGM_5s_THS      = $NULL
-        HashRate_CGM_1m_THS      = $NULL
-        HashRate_CGM_5m_THS      = $NULL
-        HashRate_CGM_15m_THS     = $NULL
+        HashRate_CGM_Average_THS       = $NULL
+        HashRate_CGM_5s_THS            = $NULL
+        HashRate_CGM_1m_THS            = $NULL
+        HashRate_CGM_5m_THS            = $NULL
+        HashRate_CGM_15m_THS           = $NULL
 
-        Temp_CaseInlet           = $NULL
-        Temp_HashboardIn         = $NULL
-        Temp_HashboardOut        = $NULL
-        Temp_AsicTarget          = $NULL
-        Temp_AsicAverage         = $NULL
-        Temp_AsicMaximum         = $NULL
+        Temp_CaseInlet                 = $NULL
+        Temp_HashboardIn               = $NULL
+        Temp_HashboardOut              = $NULL
+        Temp_AsicTarget                = $NULL
+        Temp_AsicAverage               = $NULL
+        Temp_AsicMaximum               = $NULL
+
+        ActivePool_Address             = $NULL
+        ActivePool_Username            = $NULL
+        ActivePool_PingTime            = $NULL
+        ActivePool_LastValidWork       = $NULL
+        ActivePool_LastShareDifficulty = $NULL
+        ActivePool_BestShare           = $NULL
+        ActivePool_FoundBlocks         = $NULL
+        ActivePool_Rejected_PCT        = $NULL
+        ActivePool_Stale_PCT           = $NULL
+
     }
 
     #######################################################
@@ -238,6 +251,18 @@ function Get-AvalonMinerInfo {
 
     if ( $NULL -ne $CustomData.Ver ) {
         $MinerInfo.Model = $CustomData.Ver -split '-' | Select-Object -First 1
+    }
+
+    # Core
+
+    if ( $NULL -ne $CustomData.Core ) {
+        $MinerInfo.Core = $CustomData.Core
+    }
+
+    # Firmware
+
+    if ( $NULL -ne $CustomData.BVer ) {
+        $MinerInfo.Firmware = $CustomData.BVer
     }
 
     # Status
@@ -344,6 +369,12 @@ function Get-AvalonMinerInfo {
         $MinerInfo.Temp_AsicMaximum = $CustomData.TMax
     }
 
+    # Active Pool - Partial - Need summary + lcd
+
+    if ( $NULL -ne $CustomData.PING ) {
+        $MinerInfo.ActivePool_PingTime = '{0}' -f $CustomData.PING
+    }
+
     #######################################################
     # Fetch summary data
 
@@ -369,24 +400,26 @@ function Get-AvalonMinerInfo {
         $MinerInfo.HashRate_CGM_15m_THS = '{0:N2}' -f $($SUMMARY_ApiObject.SUMMARY.'MHS 15m' / 1000000)
     }
 
+    if ( $NULL -ne $SUMMARY_ApiObject.SUMMARY.'Pool Rejected%' ) {
+        $MinerInfo.ActivePool_Rejected_PCT = '{0:N4}' -f $($SUMMARY_ApiObject.SUMMARY.'Pool Rejected%')
+    }
+    if ( $NULL -ne $SUMMARY_ApiObject.SUMMARY.'Pool Stale%' ) {
+        $MinerInfo.ActivePool_Stale_PCT = '{0:N4}' -f $($SUMMARY_ApiObject.SUMMARY.'Pool Stale%')
+    }
+
     #######################################################
     # Fetch lcd data
 
-    <#
-    $ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'lcd'
-    $LcdData = [PSCustomObject] @{
+    $LCD_ApiObject = Invoke-AvalonAPI -IP $IP -Command 'lcd'
 
-        CurrentPool         = $ApiObject.LCD.'Current Pool'
-        User                = $ApiObject.LCD.'User'
-        LastValidWork       = Get-Date -Date ([DateTimeOffset]::FromUnixTimeSeconds($ApiObject.LCD.'Last Valid Work')).DateTime.ToLocalTime() -Format 'yyyy-MM-dd HH:mm:ss'
-        LastShareDifficulty = Convert-AvalonDifficulty -Difficulty $ApiObject.LCD.'Last Share Difficulty'
-        BestShare           = Convert-AvalonDifficulty -Difficulty $ApiObject.LCD.'Best Share'
-        FoundBlocks         = $ApiObject.LCD.'Found Blocks'
-    }
-    $LcdData | Format-List *
-    #>
+    $MinerInfo.ActivePool_Address = $LCD_ApiObject.LCD.'Current Pool'
+    $MinerInfo.ActivePool_Username = $LCD_ApiObject.LCD.'User'
+    $MinerInfo.ActivePool_LastValidWork = Get-Date -Date ([DateTimeOffset]::FromUnixTimeSeconds($LCD_ApiObject.LCD.'Last Valid Work')).DateTime.ToLocalTime() -Format 'yyyy-MM-dd HH:mm:ss'
+    $MinerInfo.ActivePool_LastShareDifficulty = Convert-AvalonDifficulty -Difficulty $LCD_ApiObject.LCD.'Last Share Difficulty'
+    $MinerInfo.ActivePool_BestShare = Convert-AvalonDifficulty -Difficulty $LCD_ApiObject.LCD.'Best Share'
+    $MinerInfo.ActivePool_FoundBlocks = $LCD_ApiObject.LCD.'Found Blocks'
 
-    
+
     #######################################################
 
     $MinerInfo
