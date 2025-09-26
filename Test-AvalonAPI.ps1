@@ -53,6 +53,11 @@ Import-Module "$PSScriptRoot\Modules\Avalon\Avalon.psm1"
 #######################################################################################################################
 # MAIN
 
+#$ESTATS_ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'estats'
+#$CustomData = Get-AvalonCustomData -ApiObject $ESTATS_ApiObject
+#$CustomData | Format-List *
+
+
 #Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 #Write-Host 'edevs' -ForegroundColor Cyan
 #Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
@@ -62,8 +67,8 @@ Import-Module "$PSScriptRoot\Modules\Avalon\Avalon.psm1"
 #Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 #Write-Host 'summary' -ForegroundColor Cyan
 #Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'summary'
-#$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'summary'
+$ApiObject | ConvertTo-Json -Depth 100
 
 
 #Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
@@ -115,31 +120,6 @@ help
 #>
 
 
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'lcd' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'lcd'
-
-$ApiObject | ConvertTo-Json -Depth 100
-
-<#
-$LcdData = [PSCustomObject] @{
-
-    CurrentPool         = $ApiObject.LCD.'Current Pool'
-    User                = $ApiObject.LCD.'User'
-
-    LastValidWork       = Get-Date -Date ([DateTimeOffset]::FromUnixTimeSeconds($ApiObject.LCD.'Last Valid Work')).DateTime.ToLocalTime() -Format 'yyyy-MM-dd HH:mm:ss'
-    LastShareDifficulty = Convert-AvalonDifficulty -Difficulty $ApiObject.LCD.'Last Share Difficulty'
-
-    # Only work on Q model
-    #LastShareTime       = New-TimeSpan -Seconds ($ApiObject.LCD.'Last Share Time' - $ApiObject.LCD.Elapsed)
-
-    BestShare           = Convert-AvalonDifficulty -Difficulty $ApiObject.LCD.'Best Share'
-    FoundBlocks         = $ApiObject.LCD.'Found Blocks'
-}
-
-$LcdData | Format-List *
-#>
 
 #######################################################################################################################
 
