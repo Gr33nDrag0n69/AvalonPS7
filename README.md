@@ -168,3 +168,8 @@ Set Default Pool => `0`, Backups => `1` and `2` (0 highest priority):
 
 Default cgminer API port used by scripts: **4028**. If you changed the miner’s API port, update the script or helper.
 
+## External References
+
+* https://github.com/Canaan-Creative/Avalon_Nano3s/blob/master/cg_miner/api/api.c
+* https://github.com/Canaan-Creative/avalon10-docs/blob/master/Universal%20API/Avalon%20A10%20API%20manual-EN.md
+* https://github.com/HashSource/avalon_upgrade_package_extract
