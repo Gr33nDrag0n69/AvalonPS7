@@ -1,7 +1,7 @@
 
 @{
 
-    ModuleVersion     = '1.1.0'
+    ModuleVersion     = '1.1.1'
     GUID              = 'C195AD55-8B68-4181-9850-49D273E68328'
     Author            = 'Gr33nDrag0n'
     CompanyName       = ''
