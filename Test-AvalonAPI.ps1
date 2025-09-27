@@ -89,8 +89,9 @@ Write-Host 'ascset' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 
 # Test with parameters TODO
-#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset'
-#$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,help'
+$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject.STATUS.Msg
 
 <#
 Notes from r3mko on discord
