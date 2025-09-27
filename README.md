@@ -62,7 +62,7 @@ Example:
 
 ### `Show-AvalonMinerPoolConfig.ps1`
 
-List configured pools. (full json object for now)
+List configured pools & statistics.
 
 Example:
 
