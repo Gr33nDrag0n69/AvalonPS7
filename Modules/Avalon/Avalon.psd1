@@ -15,7 +15,8 @@
         'Invoke-AvalonAPI',
         'Get-AvalonCustomData',
         'Get-AvalonMinerInfo',
-        'Convert-AvalonDifficulty'
+        'Convert-AvalonDifficulty',
+        'Convert-AvalonVoltageString'
     )
     CmdletsToExport   = @()
     VariablesToExport = ''
