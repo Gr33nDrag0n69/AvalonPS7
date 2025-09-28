@@ -28,11 +28,17 @@ Default cgminer API port used by scripts: **4028**. If you changed the miner’s
 
 Show general miner information.
 
-Example:
+Command Example:
 
 ```powershell
 .\Show-AvalonMinerInfo.ps1 -MinerIP 192.168.1.236
+
 ```
+
+Output Example:
+
+[IMAGE](..\MEDIA\Show-AvalonMinerInfo.png)
+
 
 ## HW Config Scripts
 
