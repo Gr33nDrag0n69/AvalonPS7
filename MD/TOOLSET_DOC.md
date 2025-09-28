@@ -46,38 +46,6 @@ Output Example:
 
 Set the fan speed of an Avalon miner via the ascset API. USE AT YOUR OWN RISK(S).
 
-.PARAMETER MinerIP
-
-    IP address of the miner.
-
-.PARAMETER Mode
-
-    Select one of the three parameter sets: Exact, Range, Auto.
-
-    - Auto: no additional numeric parameters (uses -1)
-    - Exact: requires -Speed (15..100)
-    - Range: requires -MinSpeed (15..100) and -MaxSpeed (15..100)
-
-.PARAMETER Speed
-
-    Required for Exact mode. Must be between 25 and 100.
-
-    Set the fan speed to an exact value (25..100).
-    Example: 80
-
-.PARAMETER MinSpeed
-
-    Required for Range mode. Must be between 25 and 100.
-
-    Set the minimum allowed fan speed (25..100).
-    Example: 30
-
-.PARAMETER MaxSpeed
-    Required for Range mode. Must be between 25 and 100.
-
-    Set the maximum allowed fan speed (25..100).
-    Example: 100
-
 Examples:
 
 ```powershell
