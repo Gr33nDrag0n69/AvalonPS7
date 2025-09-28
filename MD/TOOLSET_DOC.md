@@ -1,10 +1,5 @@
 # Toolset Documentation
 
-
-
-
----
-
 ## PowerShell 7 IS REQUIRED.
 
 All the free tools are written using PowerShell 7.
@@ -29,9 +24,7 @@ Default cgminer API port used by scripts: **4028**. If you changed the miner’s
 
 ## Main Scripts
 
----
-
-### `Show-AvalonMinerInfo.ps1`
+### `Show-AvalonMinerInfo`
 
 Show general miner information.
 
@@ -41,13 +34,62 @@ Example:
 .\Show-AvalonMinerInfo.ps1 -MinerIP 192.168.1.236
 ```
 
----
+## HW Config Scripts
+
+### `Set-AvalonMinerFanSpeed`
+
+Set the fan speed of an Avalon miner via the ascset API. USE AT YOUR OWN RISK(S).
+
+.PARAMETER MinerIP
+
+    IP address of the miner.
+
+.PARAMETER Mode
+
+    Select one of the three parameter sets: Exact, Range, Auto.
+
+    - Auto: no additional numeric parameters (uses -1)
+    - Exact: requires -Speed (15..100)
+    - Range: requires -MinSpeed (15..100) and -MaxSpeed (15..100)
+
+.PARAMETER Speed
+
+    Required for Exact mode. Must be between 25 and 100.
+
+    Set the fan speed to an exact value (25..100).
+    Example: 80
+
+.PARAMETER MinSpeed
+
+    Required for Range mode. Must be between 25 and 100.
+
+    Set the minimum allowed fan speed (25..100).
+    Example: 30
+
+.PARAMETER MaxSpeed
+    Required for Range mode. Must be between 25 and 100.
+
+    Set the maximum allowed fan speed (25..100).
+    Example: 100
+
+Examples:
+
+```powershell
+
+# Auto mode: let device auto-adjust (default)
+.\Set-AvalonMinerFanSpeed -MinerIP '192.168.1.100' -Mode Auto
+
+# Exact mode: set the fan to 80%
+.\Set-AvalonMinerFanSpeed -MinerIP '192.168.1.100' -Mode Exact -Speed 80
+
+# Range mode: set allowed range 30..100
+.\Set-AvalonMinerFanSpeed -MinerIP '192.168.1.100' -Mode Range -MinSpeed 30 -MaxSpeed 100
+
+```
 
 ## Pool(s) Scripts
 
----
-
-### `Show-AvalonMinerPoolConfig.ps1`
+### `Show-AvalonMinerPoolConfig`
 
 List configured pools & statistics.
 
@@ -59,7 +101,7 @@ Example:
 
 ---
 
-### `Set-AvalonMinerPoolConfig.ps1`
+### `Set-AvalonMinerPoolConfig`
 
 Set (replace) a pool entry. **Authentication required**: provide the miner web/admin password (plain text).
 
@@ -83,7 +125,7 @@ Example:
 
 ---
 
-### `Set-AvalonMinerActivePool.ps1`
+### `Set-AvalonMinerActivePool`
 
 Switch the active pool (equivalent to `switchpool <index>`).
 
@@ -95,7 +137,7 @@ Example:
 
 ---
 
-### `Enable-AvalonMinerPool.ps1`
+### `Enable-AvalonMinerPool`
 
 Enable a configured pool index.
 
@@ -107,7 +149,7 @@ Example:
 
 ---
 
-### `Disable-AvalonMinerPool.ps1`
+### `Disable-AvalonMinerPool`
 
 Disable a configured pool index.
 
@@ -121,7 +163,7 @@ Example:
 
 ---
 
-### `Set-AvalonMinerPoolPriority.ps1`
+### `Set-AvalonMinerPoolPriority`
 
 Set pool priority ordering. Provide a comma separated list of pool indices; the order you give becomes new priority order.
 
