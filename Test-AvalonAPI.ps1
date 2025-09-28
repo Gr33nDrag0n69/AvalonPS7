@@ -143,6 +143,22 @@ $VoltageObject | Format-List *
 # Untested
 ############################################################################
 
+# FAN speed
+
+## Set to 80%
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,fan-spd,80'
+#$ApiObject | ConvertTo-Json -Depth 100
+#$ApiObject.STATUS.Msg
+
+## Set to range 15-100%
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,fan-spd,15..100'
+#$ApiObject | ConvertTo-Json -Depth 100
+#$ApiObject.STATUS.Msg
+
+## Set to auto-adjust
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,fan-spd,-1'
+#$ApiObject | ConvertTo-Json -Depth 100
+#$ApiObject.STATUS.Msg
 
 
 #######################################################################################################################
