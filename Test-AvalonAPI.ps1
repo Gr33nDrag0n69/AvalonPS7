@@ -67,8 +67,9 @@ Import-Module "$PSScriptRoot\Modules\Avalon\Avalon.psm1"
 #Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 #Write-Host 'summary' -ForegroundColor Cyan
 #Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'summary'
-$ApiObject | ConvertTo-Json -Depth 100
+
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'summary'
+#$ApiObject | ConvertTo-Json -Depth 100
 
 
 #Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
@@ -87,11 +88,6 @@ $ApiObject | ConvertTo-Json -Depth 100
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 Write-Host 'ascset' -ForegroundColor Cyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-
-# Test with parameters TODO
-$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,help'
-$ApiObject | ConvertTo-Json -Depth 100
-$ApiObject.STATUS.Msg
 
 <#
 Notes from r3mko on discord
@@ -117,8 +113,35 @@ upgrade
 worklevel
 password
 help
-
 #>
+
+###############################################################################
+# Tested ascset commands
+###############################################################################
+
+# Help on ascset subcommands
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,help'
+#$ApiObject | ConvertTo-Json -Depth 100
+#$ApiObject.STATUS.Msg
+
+# Query current voltage (if supported)
+<#
+Write-Host 'Query current voltage (if supported)' -ForegroundColor DarkGreen
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,voltage'
+#$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject.STATUS.Msg
+
+$VoltageString = $ApiObject.STATUS.Msg -replace 'ASC 0 set info: ', ''
+
+Write-Host "Current voltage string: $VoltageString" -ForegroundColor DarkCyan
+
+$VoltageObject = Convert-AvalonVoltageString -VoltageString $VoltageString
+$VoltageObject | Format-List *
+#>
+
+############################################################################
+# Untested
+############################################################################
 
 
 
