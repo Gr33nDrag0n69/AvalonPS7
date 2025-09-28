@@ -37,7 +37,7 @@ Command Example:
 
 Output Example:
 
-[IMAGE](..\MEDIA\Show-AvalonMinerInfo.png)
+![Show-AvalonMinerInfo_Output](../MEDIA/Show-AvalonMinerInfo.png)
 
 
 ## HW Config Scripts
