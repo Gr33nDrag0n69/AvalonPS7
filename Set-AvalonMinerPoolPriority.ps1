@@ -1,7 +1,17 @@
 <#
 .SYNOPSIS
 
-    TODO
+    Set pool priority ordering.
+
+.PARAMETER MinerIP
+
+    IP address of the miner.
+
+.PARAMETER PoolPriority
+
+    Comma-separated list of pool priorities.
+    Example: '1,0' sets Pool 1 as default and Pool 0 as backup, disabling Pool 2.
+    Example: '0,1,2' sets Pool 0 as default, Pool 1 as first backup and Pool 2 as second backup.
 
 .EXAMPLE
 
@@ -9,17 +19,11 @@
 
     PS> .\Set-AvalonMinerPoolPriority.ps1 -MinerIP 192.168.0.236 -PoolPriority '1,0'
 
-.EXAMPLE
-
-    Set Default Pool to 0, Backup Pool to 1 and 2
-
-    PS> .\Set-AvalonMinerPoolPriority.ps1 -MinerIP 192.168.0.236 -PoolPriority '0,1,2'
-
 .NOTES
 
-    Author     : Gr33nDrag0n
     Version    : 1.0.0
-
+    Copyright (c) 2025 Gr33nDrag0n69
+    SPDX-License-Identifier: Apache-2.0
 #>
 
 #Requires -Version 7.0
