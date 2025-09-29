@@ -8,7 +8,68 @@
 
 All examples assume you have `$MinerIP` set to the miner IP and ASC id `0`. Adjust as needed.
 
-Clean list of all the `ascset` (device) subcommands that this driver implements (taken from the `device_cmds` table in `driver-avalon.c`):
+## Clean List from the ascset help command on the Nano3S
+
+help
+voltage
+fan-spd
+ledmode
+ledset
+lcd
+nightlamp
+wallpaper
+hash-sn-read
+hash-sn-write
+volt-adjust-switch
+workmode
+worklevel
+work_mode_lvl
+reboot
+filter-clean
+facopts
+faclock
+frequency
+loop
+password
+qr_auth
+target-temp
+smart-speed
+ssdn-pro
+spdlog
+pll-sel
+aging-parameter
+
+
+## Clean List from the ascset help command on the Q
+
+help
+voltage
+fan-spd
+lcd
+hash-sn-read
+hash-sn-write
+volt-tuning
+workmode
+worklevel
+work_mode_lvl
+reboot
+softon
+softoff
+filter-clean
+facopts
+faclock
+activate
+solo-allowed
+frequency
+loop
+password
+qr_auth
+time
+
+
+## Clean list of all the `ascset` (device) subcommands
+
+These are in the open source version of the driver (taken from the `device_cmds` table in `driver-avalon.c`):
 
 * `help` — show available device commands
 * `voltage` — set/query PSU voltage
@@ -32,7 +93,6 @@ Clean list of all the `ascset` (device) subcommands that this driver implements 
 * `password` — change web UI password
 * `qr_auth` — QR-login authentication
 
-The following list are the device commands not tested or implemented in an "official" tool yet.
 
 ---
 
