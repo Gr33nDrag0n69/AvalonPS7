@@ -22,18 +22,22 @@ The goal of this project is to communicate directly with the miners, skipping Ca
 * Nano 3S
 * Q
 
+
 ## Toolset Documentation
 
 The full documentation on how to use this toolset is [here](./MD/TOOLSET_DOC.md)
 
-### Main Scripts
+### Info Scripts
 
 * [Show-AvalonMinerInfo](./MD/TOOLSET_DOC.md#Show-AvalonMinerInfo)
 * [Show-AvalonMinerVersion](./MD/TOOLSET_DOC.md#Show-AvalonMinerVersion)
 
-### HW Scripts
+### Command Scripts
 
 * [Set-AvalonMinerFanSpeed](./MD/TOOLSET_DOC.md#Set-AvalonMinerFanSpeed)
+* [Set-AvalonMinerTargetTemperature](./MD/TOOLSET_DOC.md#TargetTemperature)
+* [Set-AvalonMinerWorkMode](./MD/TOOLSET_DOC.md#Set-AvalonMinerFanSpeed)
+* [Reset-AvalonMinerFilterClean](./MD/TOOLSET_DOC.md#Reset-AvalonMinerFilterClean)
 * [Restart-AvalonMiner](./MD/TOOLSET_DOC.md#Restart-AvalonMiner)
 
 ### Pool(s) Scripts
@@ -45,15 +49,13 @@ The full documentation on how to use this toolset is [here](./MD/TOOLSET_DOC.md)
 * [Disable-AvalonMinerPool](./MD/TOOLSET_DOC.md#Disable-AvalonMinerPool)
 * [Set-AvalonMinerPoolPriority](./MD/TOOLSET_DOC.md#Set-AvalonMinerPoolPriority)
 
-### MISC. Script(s)
-
-* [Reset-AvalonMinerFilterClean](./MD/TOOLSET_DOC.md#Reset-AvalonMinerFilterClean)
 
 ## External References
 
 * https://github.com/Canaan-Creative/Avalon_Nano3s/blob/master/cg_miner/api/api.c
 * https://github.com/Canaan-Creative/Avalon_Nano3s/blob/master/cg_miner/cgminer/driver-avalon.c
 * https://github.com/Canaan-Creative/avalon10-docs/blob/master/Universal%20API/Avalon%20A10%20API%20manual-EN.md
+
 
 ## License
 
