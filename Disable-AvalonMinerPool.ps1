@@ -1,7 +1,15 @@
 <#
 .SYNOPSIS
 
-    TODO
+    Disable a mining pool on an Avalon miner.
+
+.PARAMETER MinerIP
+
+    IP address of the miner.
+
+.PARAMETER PoolID
+
+    Pool number to set as active (0, 1, or 2).
 
 .EXAMPLE
 
@@ -9,8 +17,9 @@
 
 .NOTES
 
-    Author     : Gr33nDrag0n
     Version    : 1.0.0
+    Copyright (c) 2025 Gr33nDrag0n69
+    SPDX-License-Identifier: Apache-2.0
 
 #>
 
