@@ -70,13 +70,13 @@ Examples:
 ```powershell
 
 # Auto mode: let device auto-adjust (default)
-.\Set-AvalonMinerFanSpeed -MinerIP '192.168.1.100' -Mode Auto
+.\Set-AvalonMinerFanSpeed.ps1 -MinerIP '192.168.1.100' -Mode Auto
 
 # Exact mode: set the fan to 80%
-.\Set-AvalonMinerFanSpeed -MinerIP '192.168.1.100' -Mode Exact -Speed 80
+.\Set-AvalonMinerFanSpeed.ps1 -MinerIP '192.168.1.100' -Mode Exact -Speed 80
 
 # Range mode: set allowed range 30..100
-.\Set-AvalonMinerFanSpeed -MinerIP '192.168.1.100' -Mode Range -MinSpeed 30 -MaxSpeed 100
+.\Set-AvalonMinerFanSpeed.ps1 -MinerIP '192.168.1.100' -Mode Range -MinSpeed 30 -MaxSpeed 100
 
 ```
 
@@ -209,6 +209,6 @@ Example:
 
 ```powershell
 
-.\Reset-AvalonMinerFilterClean -MinerIP '192.168.1.100'
+.\Reset-AvalonMinerFilterClean.ps1 -MinerIP '192.168.1.100'
 
 ```
