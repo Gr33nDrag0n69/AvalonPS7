@@ -1,5 +1,6 @@
 <#
 .SYNOPSIS
+
     Set the fan speed of an Avalon miner via the ascset API. USE AT YOUR OWN RISK(S).
 
 .PARAMETER MinerIP
@@ -48,8 +49,10 @@
 
 .NOTES
 
-    Author     : Gr33nDrag0n
     Version    : 1.0.0
+    Copyright (c) 2025 Gr33nDrag0n69
+    SPDX-License-Identifier: Apache-2.0
+
 #>
 
 #Requires -Version 7.0
