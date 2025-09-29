@@ -42,6 +42,22 @@ Output Example:
 ![Show-AvalonMinerInfo_Output](../MEDIA/Show-AvalonMinerInfo.png)
 
 
+### `Show-AvalonMinerVersion`
+
+Output HW & SW version information about an Avalon miner.
+
+Command Example:
+
+```powershell
+.\Show-AvalonMinerVersion.ps1 -MinerIP 192.168.1.236
+
+```
+
+Output Example:
+
+![Show-AvalonMinerVersion_Output](../MEDIA/Show-AvalonMinerVersion.png)
+
+
 
 ## HW Config Scripts
 
