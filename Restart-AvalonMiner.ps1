@@ -9,7 +9,8 @@
 
 .PARAMETER DelaySeconds
 
-    Optional delay in seconds before executing the reboot command. Default is 0.
+    Optional delay in seconds before executing the reboot command.
+    Default is 0. Maximum is 300 seconds.
 
 .EXAMPLE
 
