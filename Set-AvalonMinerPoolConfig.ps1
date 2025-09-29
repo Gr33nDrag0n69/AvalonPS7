@@ -1,7 +1,32 @@
 <#
 .SYNOPSIS
 
-    TODO
+    Set (replace) a pool entry. Authentication required
+
+.PARAMETER MinerIP
+
+    IP address of the miner.
+
+.PARAMETER MinerPassword
+
+    Admin password of the miner.
+
+.PARAMETER PoolID
+
+    Pool number to configure (0, 1, or 2).
+
+.PARAMETER PoolURL
+
+    URL of the mining pool (e.g., stratum+tcp://example.com:333).
+
+.PARAMETER PoolUsername
+
+    Username for the mining pool (e.g., workername.Avalon_Q_01).
+
+.PARAMETER PoolPassword
+
+    Password for the mining pool.
+    Use 'x' if no password is required.
 
 .EXAMPLE
 
@@ -9,8 +34,9 @@
 
 .NOTES
 
-    Author     : Gr33nDrag0n
     Version    : 1.0.0
+    Copyright (c) 2025 Gr33nDrag0n69
+    SPDX-License-Identifier: Apache-2.0
 
 #>
 
