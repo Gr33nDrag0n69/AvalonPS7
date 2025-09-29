@@ -24,7 +24,7 @@ Default cgminer API port used by scripts: **4028**. If you changed the miner’s
 
 
 
-## Main Scripts
+## Info Scripts
 
 ### `Show-AvalonMinerInfo`
 
@@ -59,7 +59,7 @@ Output Example:
 
 
 
-## HW Config Scripts
+## Command Scripts
 
 ### `Set-AvalonMinerFanSpeed`
 
@@ -77,6 +77,56 @@ Examples:
 
 # Range mode: set allowed range 30..100
 .\Set-AvalonMinerFanSpeed.ps1 -MinerIP '192.168.1.100' -Mode Range -MinSpeed 30 -MaxSpeed 100
+
+```
+
+---
+
+### `Set-AvalonMinerTargetTemperature`
+
+Set the target temperature of an Avalon miner.
+
+Default values:
+
+Nano3S  90°C
+Q       80°C
+
+
+Example:
+
+```powershell
+.\Set-AvalonMinerTargetTemperature.ps1 -MinerIP 192.168.0.236 -Temperature 75
+
+```
+
+---
+
+### `Set-AvalonMinerWorkMode`
+
+Set the work mode of an Avalon miner.
+
+0 / Low / Eco
+1 / Medium / Standard
+2 / High / Super
+
+Example:
+
+```powershell
+.\Set-AvalonMinerWorkMode.ps1 -MinerIP 192.168.0.236 -WorkMode 1
+
+```
+
+---
+
+### `Reset-AvalonMinerFilterClean`
+
+Reset the filter clean reminder on an Avalon miner.
+
+Example:
+
+```powershell
+
+.\Reset-AvalonMinerFilterClean.ps1 -MinerIP '192.168.1.100'
 
 ```
 
@@ -101,7 +151,6 @@ Examples:
 .\Restart-AvalonMiner.ps1 -MinerIP 192.168.0.236 -DelaySeconds 10
 
 ```
-
 
 
 ## Pool(s) Scripts
@@ -198,17 +247,3 @@ Set Default Pool => `0`, Backups => `1` and `2` (0 highest priority):
 .\Set-AvalonMinerPoolPriority.ps1 -MinerIP 192.168.0.236 -PoolPriority '0,1,2'
 ```
 
-
-## MISC. Scripts
-
-### `Reset-AvalonMinerFilterClean`
-
-Reset the filter clean reminder on an Avalon miner.
-
-Example:
-
-```powershell
-
-.\Reset-AvalonMinerFilterClean.ps1 -MinerIP '192.168.1.100'
-
-```
