@@ -1,7 +1,7 @@
 
 @{
 
-    ModuleVersion     = '1.1.1'
+    ModuleVersion     = '1.2.0'
     GUID              = 'C195AD55-8B68-4181-9850-49D273E68328'
     Author            = 'Gr33nDrag0n'
     CompanyName       = ''
@@ -16,7 +16,8 @@
         'Get-AvalonCustomData',
         'Get-AvalonMinerInfo',
         'Convert-AvalonDifficulty',
-        'Convert-AvalonVoltageString'
+        'Convert-AvalonVoltageString',
+        'Format-AvalonMinerMacAddress'
     )
     CmdletsToExport   = @()
     VariablesToExport = ''
