@@ -32,6 +32,7 @@ Clean list of all the `ascset` (device) subcommands that this driver implements 
 * `password` — change web UI password
 * `qr_auth` — QR-login authentication
 
+The following list are the device commands not tested or implemented in an "official" tool yet.
 
 ---
 
