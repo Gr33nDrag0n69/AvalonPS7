@@ -85,40 +85,19 @@ Import-Module "$PSScriptRoot\..\Modules\Avalon\Avalon.psm1"
 #$CustomData | Format-List *
 
 
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
-Write-Host 'ascset' -ForegroundColor Cyan
-Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#########################################################################################
+# ASCSET | HELP (GET) EXAMPLE
+#########################################################################################
 
-<#
-Notes from r3mko on discord
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,help'
+$CommandListString = $ApiObject.STATUS.Msg -replace 'ASC 0 set info: ', ''
+$CommandList = $CommandListString -split '\s+'
+$CommandList -split '\|'
 
-{ "command": "ascset", "parameter": "0,fan-spd,90" }
-Also for later reference, the fan-spd also takes a range: 10-100
 
-help output:
-
-Subcommands list:
-
-loop
-pdelay
-frequency
-led
-hashpower
-fan-spd
-factory
-reboot
-softoff
-softon
-upgrade
-worklevel
-password
-help
-#>
-
-# Help on ascset subcommands
-#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,help'
-#$ApiObject | ConvertTo-Json -Depth 100
-#$ApiObject.STATUS.Msg
+#########################################################################################
+# ASCSET | WORKMODE & WORKLEVEL (GET & SET) EXAMPLES
+#########################################################################################
 
 <#
 ### `workmode`
@@ -182,6 +161,7 @@ $ApiObject.STATUS.Msg
 #$ApiObject.STATUS.Msg
 
 #>
+<#
 Write-Host ''
 Write-Host 'GET | ascset workmode' -ForegroundColor DarkCyan
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
@@ -206,6 +186,7 @@ $ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,work_mod
 $ApiObject | ConvertTo-Json -Depth 100
 $ApiObject.STATUS.Msg
 Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+#>
 
 #######################################################################################################################
 
