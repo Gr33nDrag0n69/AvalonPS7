@@ -16,7 +16,6 @@
         'Get-AvalonCustomData',
         'Get-AvalonMinerInfo',
         'Convert-AvalonDifficulty',
-        'Convert-AvalonVoltageString',
         'Format-AvalonMinerMacAddress'
     )
     CmdletsToExport   = @()
