@@ -75,7 +75,7 @@ if ( $NULL -ne $MinerInfo ) {
     Write-Host "IP                   : $($MinerInfo.IP)" -ForegroundColor White
     Write-Host "Model                : $($MinerInfo.Model)" -ForegroundColor White
     Write-Host "Core                 : $($MinerInfo.Core)" -ForegroundColor White
-    Write-Host "Firmware             : $($MinerInfo.Firmware)" -ForegroundColor White
+    #Write-Host "Firmware             : $($MinerInfo.Firmware)" -ForegroundColor White
     Write-Host ''
     Write-Host "Status               : $($MinerInfo.Status)" -ForegroundColor White
     Write-Host "Work Mode            : $($MinerInfo.WorkMode)" -ForegroundColor White
