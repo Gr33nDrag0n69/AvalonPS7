@@ -17,7 +17,7 @@
 
 .EXAMPLE
 
-    PS> .\Set-AvalonMinerActivePool.ps1 -MinerIP 192.168.0.236 -WorkMode 1
+    PS> .\Set-AvalonMinerWorkMode.ps1 -MinerIP 192.168.0.236 -WorkMode 1
 
 .NOTES
 
