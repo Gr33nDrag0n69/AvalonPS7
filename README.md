@@ -29,6 +29,7 @@ The full documentation on how to use this toolset is [here](./MD/TOOLSET_DOC.md)
 ### Main Scripts
 
 * [Show-AvalonMinerInfo](./MD/TOOLSET_DOC.md#Show-AvalonMinerInfo)
+* [Show-AvalonMinerVersion](./MD/TOOLSET_DOC.md#Show-AvalonMinerVersion)
 
 ### HW Scripts
 
