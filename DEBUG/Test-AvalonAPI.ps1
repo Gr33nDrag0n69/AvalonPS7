@@ -43,7 +43,7 @@ param (
 #######################################################################################################################
 # Load Module
 
-Import-Module "$PSScriptRoot\Modules\Avalon\Avalon.psm1"
+Import-Module "$PSScriptRoot\..\Modules\Avalon\Avalon.psm1"
 
 #######################################################################################################################
 # Script Configuration
@@ -115,29 +115,11 @@ password
 help
 #>
 
-###############################################################################
-# Tested ascset commands
-###############################################################################
-
 # Help on ascset subcommands
 #$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,help'
 #$ApiObject | ConvertTo-Json -Depth 100
 #$ApiObject.STATUS.Msg
 
-# Query current voltage (if supported)
-<#
-Write-Host 'Query current voltage (if supported)' -ForegroundColor DarkGreen
-$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,voltage'
-#$ApiObject | ConvertTo-Json -Depth 100
-$ApiObject.STATUS.Msg
-
-$VoltageString = $ApiObject.STATUS.Msg -replace 'ASC 0 set info: ', ''
-
-Write-Host "Current voltage string: $VoltageString" -ForegroundColor DarkCyan
-
-$VoltageObject = Convert-AvalonVoltageString -VoltageString $VoltageString
-$VoltageObject | Format-List *
-#>
 
 ############################################################################
 
