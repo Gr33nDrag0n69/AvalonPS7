@@ -49,4 +49,8 @@ The full documentation on how to use this toolset is [here](./MD/TOOLSET_DOC.md)
 * https://github.com/Canaan-Creative/Avalon_Nano3s/blob/master/cg_miner/cgminer/driver-avalon.c
 * https://github.com/Canaan-Creative/avalon10-docs/blob/master/Universal%20API/Avalon%20A10%20API%20manual-EN.md
 
+## License
+
+This project is licensed under the Apache License 2.0 — see the [LICENSE](./LICENSE) file for details.
+SPDX-License-Identifier: Apache-2.0
 
