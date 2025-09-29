@@ -120,26 +120,92 @@ help
 #$ApiObject | ConvertTo-Json -Depth 100
 #$ApiObject.STATUS.Msg
 
+<#
+### `workmode`
 
-############################################################################
+**What it does:** GET/SET (`set_avalon_device_workmode`). Use textual `get`/`set` sub-commands in the handler parameters.
 
-# FAN speed
+* GET: `get` (returns `workmode <value>`).
+* SET: `set,<mode>` where `mode` must be `<= info->maxmode[0]` and device must not be in calibration.
 
-Write-Host 'Set fan speed | Mode Exact | Value to 80%' -ForegroundColor DarkGreen
-$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,fan-spd,80'
+# GET EXAMPLE
 
-#Write-Host 'Set fan speed | Mode Range | Value to 30-100%' -ForegroundColor DarkGreen
-#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,fan-spd,30..100'
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,workmode,get'
+#$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject.STATUS.Msg
 
-#Write-Host 'Set fan speed | Mode Auto' -ForegroundColor DarkGreen
-#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,fan-spd,-1'
+# SET EXAMPLE
+
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,workmode,set,2'
+#$ApiObject | ConvertTo-Json -Depth 100
+#$ApiObject.STATUS.Msg
+
+# NOTE: the handler rejects changes if calibration (aging) is not finished or mode > maxmode.
 
 
-if ( $ApiObject.STATUS.Msg -like 'ASC 0 set OK*' ) {
-    Write-Host 'Command executed successfully' -ForegroundColor Green
-} else {
-    Write-Host "$($ApiObject.STATUS.Msg)" -ForegroundColor Red
-}
+### `worklevel`
+
+**What it does:** GET/SET (`set_avalon_device_worklevel`). Format: `get` or `set,<level>`. `level` must be within bounds encoded in `info->worklvl[0]`.
+
+# GET EXAMPLE
+
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,worklevel,get'
+#$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject.STATUS.Msg
+
+# SET EXAMPLE
+
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,worklevel,set,3'
+#$ApiObject | ConvertTo-Json -Depth 100
+#$ApiObject.STATUS.Msg
+
+# NOTE: changes are refused while calibration (aging) is running.
+
+
+### `work_mode_lvl`
+
+**What it does:** GET/SET combined (`set_avalon_work_mode_lvl`). Format:
+
+* `get` → returns both current mode and level.
+* `set,<mode>,<level>` → set both simultaneously (with validation and calibration checks).
+
+# GET EXAMPLE
+
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,work_mode_lvl,get'
+#$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject.STATUS.Msg
+
+# SET EXAMPLE
+
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,work_mode_lvl,set,1,2'
+#$ApiObject | ConvertTo-Json -Depth 100
+#$ApiObject.STATUS.Msg
+
+#>
+Write-Host ''
+Write-Host 'GET | ascset workmode' -ForegroundColor DarkCyan
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,workmode,get'
+$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject.STATUS.Msg
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+
+Write-Host ''
+Write-Host 'GET | ascset worklevel' -ForegroundColor DarkCyan
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,worklevel,get'
+$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject.STATUS.Msg
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+
+
+Write-Host ''
+Write-Host 'GET | ascset work_mode_lvl' -ForegroundColor DarkCyan
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
+$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,work_mode_lvl,get'
+$ApiObject | ConvertTo-Json -Depth 100
+$ApiObject.STATUS.Msg
+Write-Host '--------------------------------------------------------------------------------' -ForegroundColor Gray
 
 #######################################################################################################################
 
