@@ -537,3 +537,26 @@ function Convert-AvalonVoltageString {
 
 #######################################################################################################################
 
+function Format-AvalonMinerMacAddress {
+
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $MAC
+    )
+
+    $Output = $NULL
+
+    $Hex = ($MAC -replace '[^0-9A-Fa-f]', '').ToUpper()
+
+    if ($Hex.Length -ne 12) {
+        $Output = $Hex
+    } else {
+
+        $Output = ($Hex -replace '(.{2})(?!$)', '$1:').TrimEnd(':')
+    }
+
+    $Output
+}
+
+#######################################################################################################################
