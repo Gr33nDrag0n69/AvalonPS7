@@ -26,7 +26,7 @@ Default cgminer API port used by scripts: **4028**. If you changed the miner’s
 
 ### `Show-AvalonMinerInfo`
 
-Show general miner information.
+Output detailed information about an Avalon miner.
 
 Command Example:
 
