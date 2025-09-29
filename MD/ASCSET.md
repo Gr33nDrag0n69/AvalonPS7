@@ -303,46 +303,6 @@ $ApiObject.STATUS.Msg
 #$ApiObject.STATUS.Msg
 ```
 
----
-
-### `reboot`
-
-**What it does:** SET-only (`set_avalon_device_reboot`). Schedule device reboot with a delay (seconds). Accepts a numeric delay `0..300` (checked by `MAX_DELEY_TIME` constant). No GET.
-
-```powershell
-# GET EXAMPLE
-
-# Not available — this handler only schedules reboots (set).
-
-# SET EXAMPLE
-
-#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,reboot,30'
-#$ApiObject | ConvertTo-Json -Depth 100
-#$ApiObject.STATUS.Msg
-
-# NOTE: valid range 0..300 seconds (driver-enforced).
-```
-
----
-
-### `filter-clean`
-
-**What it does:** SET-only (`avalon_filter_cleaned`). Accepts a single integer; only the value `1` is considered valid and triggers a filter-cleaning action. No GET.
-
-```powershell
-# GET EXAMPLE
-
-# Not available — handler only triggers cleaning when passed value 1.
-
-# SET EXAMPLE
-
-#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,filter-clean,1'
-#$ApiObject | ConvertTo-Json -Depth 100
-#$ApiObject.STATUS.Msg
-```
-
----
-
 ### `facopts`
 
 **What it does:** GET/SET (`set_avalon_facopts`):
