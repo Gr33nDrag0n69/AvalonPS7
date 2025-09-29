@@ -22,6 +22,8 @@ PowerShell 7 is free and can be installed on Windows, Linux, macOS & more.
 
 Default cgminer API port used by scripts: **4028**. If you changed the miner’s API port, update the script or helper.
 
+
+
 ## Main Scripts
 
 ### `Show-AvalonMinerInfo`
@@ -38,6 +40,7 @@ Command Example:
 Output Example:
 
 ![Show-AvalonMinerInfo_Output](../MEDIA/Show-AvalonMinerInfo.png)
+
 
 
 ## HW Config Scripts
@@ -60,6 +63,30 @@ Examples:
 .\Set-AvalonMinerFanSpeed -MinerIP '192.168.1.100' -Mode Range -MinSpeed 30 -MaxSpeed 100
 
 ```
+
+---
+
+### `Restart-AvalonMiner`
+
+Reboot an Avalon miner.
+
+Allow a delay in seconds before executing the reboot command.
+
+Default is 0. Maximum is 300 seconds.
+
+Examples:
+
+```powershell
+
+# Reboot immediately:
+.\Restart-AvalonMiner.ps1 -MinerIP 192.168.0.236
+
+# Reboot with 10 second delay:
+.\Restart-AvalonMiner.ps1 -MinerIP 192.168.0.236 -DelaySeconds 10
+
+```
+
+
 
 ## Pool(s) Scripts
 
@@ -155,3 +182,17 @@ Set Default Pool => `0`, Backups => `1` and `2` (0 highest priority):
 .\Set-AvalonMinerPoolPriority.ps1 -MinerIP 192.168.0.236 -PoolPriority '0,1,2'
 ```
 
+
+## MISC. Scripts
+
+### `Reset-AvalonMinerFilterClean`
+
+Reset the filter clean reminder on an Avalon miner.
+
+Example:
+
+```powershell
+
+.\Reset-AvalonMinerFilterClean -MinerIP '192.168.1.100'
+
+```
