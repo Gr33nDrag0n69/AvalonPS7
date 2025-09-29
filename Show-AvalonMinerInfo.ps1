@@ -2,7 +2,16 @@
 <#
 .SYNOPSIS
 
-    TODO
+    Output detailed information about an Avalon miner.
+
+.PARAMETER MinerIP
+
+    IP address of the miner.
+
+.PARAMETER HideSensitiveInfo
+
+    Hide sensitive information like pool URLs, usernames, and passwords.
+    Mostly for screenshots or sharing output.
 
 .EXAMPLE
 
@@ -10,9 +19,9 @@
 
 .NOTES
 
-    Author     : Gr33nDrag0n
     Version    : 1.0.0
-
+    Copyright (c) 2025 Gr33nDrag0n69
+    SPDX-License-Identifier: Apache-2.0
 #>
 
 #Requires -Version 7.0
