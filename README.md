@@ -30,9 +30,10 @@ The full documentation on how to use this toolset is [here](./MD/TOOLSET_DOC.md)
 
 * [Show-AvalonMinerInfo](./MD/TOOLSET_DOC.md#Show-AvalonMinerInfo)
 
-### HW Config Scripts
+### HW Scripts
 
 * [Set-AvalonMinerFanSpeed](./MD/TOOLSET_DOC.md#Set-AvalonMinerFanSpeed)
+* [Restart-AvalonMiner](./MD/TOOLSET_DOC.md#Restart-AvalonMiner)
 
 ### Pool(s) Scripts
 
@@ -42,6 +43,10 @@ The full documentation on how to use this toolset is [here](./MD/TOOLSET_DOC.md)
 * [Enable-AvalonMinerPool](./MD/TOOLSET_DOC.md#Enable-AvalonMinerPool)
 * [Disable-AvalonMinerPool](./MD/TOOLSET_DOC.md#Disable-AvalonMinerPool)
 * [Set-AvalonMinerPoolPriority](./MD/TOOLSET_DOC.md#Set-AvalonMinerPoolPriority)
+
+### MISC. Script(s)
+
+* [Reset-AvalonMinerFilterClean](./MD/TOOLSET_DOC.md#Reset-AvalonMinerFilterClean)
 
 ## External References
 
