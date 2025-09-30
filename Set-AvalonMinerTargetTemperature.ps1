@@ -13,12 +13,23 @@
 
 .EXAMPLE
 
-    Set the target temperature of an Avalon miner to 85°C.
-    Default value is 90°C on a Nano3S and 80°C on a Q.
+    Set the target temperature of an Avalon miner to 75°C.
 
     PS> .\Set-AvalonMinerTargetTemperature.ps1 -MinerIP 192.168.0.236 -Temperature 75
 
 .NOTES
+
+    Each time the miner is restarted or the workmode is changed, the target temperature will reset to the default value.
+
+    DEFAULT TEMPERATURES:
+
+    Nano3S in WorkMode 0 : 80°C
+    Nano3S in WorkMode 1 : 85°C
+    Nano3S in WorkMode 2 : 90°C
+
+    Q in WorkMode 0      : 65°C
+    Q in WorkMode 1      : 80°C
+    Q in WorkMode 2      : 85°C
 
     Version    : 1.0.0
     Copyright (c) 2025 Gr33nDrag0n69
