@@ -84,15 +84,28 @@ Import-Module "$PSScriptRoot\..\Modules\Avalon\Avalon.psm1"
 #$CustomData = Get-AvalonCustomData -ApiObject $ApiObject
 #$CustomData | Format-List *
 
-
 #########################################################################################
 # ASCSET | HELP (GET) EXAMPLE
 #########################################################################################
-
+<#
 $ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params '0,help'
 $CommandListString = $ApiObject.STATUS.Msg -replace 'ASC 0 set info: ', ''
 $CommandList = $CommandListString -split '\s+'
 $CommandList -split '\|'
+#>
+
+#########################################################################################
+# ASCSET | SOFTON / SOFTOFF (GET) EXAMPLE
+#########################################################################################
+
+#$Time = [int](Get-Date).ToUniversalTime().Subtract([datetime]'1970-01-01').TotalSeconds + 5
+
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params "0,softoff,0:$Time"
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params "0,softoff,1:$TwentySecondsLater"
+
+#$ApiObject = Invoke-AvalonAPI -IP $MinerIP -Command 'ascset' -Params "0,softon,1:$Time"
+
+#$ApiObject.STATUS.Msg
 
 
 #########################################################################################
