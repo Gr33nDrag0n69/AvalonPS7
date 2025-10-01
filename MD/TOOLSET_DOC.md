@@ -86,11 +86,17 @@ Examples:
 
 Set the target temperature of an Avalon miner.
 
-Default values:
+Each time the miner is rebooted or the workmode setting is changed, the target temperature will reset to the default value.
 
-Nano3S  90°C
-Q       80°C
+DEFAULT TEMPERATURES:
 
+Nano3S in WorkMode 0 : 80°C
+Nano3S in WorkMode 1 : 85°C
+Nano3S in WorkMode 2 : 90°C
+
+Q in WorkMode 0      : 65°C
+Q in WorkMode 1      : 80°C
+Q in WorkMode 2      : 85°C
 
 Example:
 
